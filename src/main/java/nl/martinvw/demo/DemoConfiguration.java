@@ -11,21 +11,19 @@ public class DemoConfiguration {
 
     @Bean
     public MainFrameDialogProvider mainDialogProvider(MainUIFrame master) {
-        return new MainFrameDialogProvider(master, "mainDialogProvider");
+        return new MainFrameDialogProvider(master);
     }
 
     @Bean
-    public MainFrameDialogProvider nestedDialogProvider(MainUIFrame master) {
-        return new MainFrameDialogProvider(master, "nestedDialogProvider");
+    public MainFrameDialogProvider nestedDialogProvider(SomeNestedUIView nestedUIView) {
+        return new MainFrameDialogProvider(nestedUIView);
     }
 
     public static class MainFrameDialogProvider {
-        private final MainUIFrame master;
-        private final String nestedDialogProvider;
+        private final Object component;
 
-        public MainFrameDialogProvider(MainUIFrame master, String nestedDialogProvider) {
-            this.master = master;
-            this.nestedDialogProvider = nestedDialogProvider;
+        public MainFrameDialogProvider(Object component) {
+            this.component = component;
         }
     }
 
